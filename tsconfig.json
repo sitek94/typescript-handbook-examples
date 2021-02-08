@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "strict": true,
+    "module": "commonjs",
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "rootDir": ".",
+    "moduleResolution": "node",
+
+    // Only for the purpose of the handbook
+    "strictNullChecks": false,
+    "noUnusedLocals": false,
+  }
+}
