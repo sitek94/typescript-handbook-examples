@@ -10,7 +10,7 @@
     console.log(labeledObj.label);
   }
 
-  let myObj = { size: 10, label: 'Size 10 Object ' };
+  let myObj = { size: 10, label: "Size 10 Object " };
 
   printLabel(myObj);
 }
@@ -25,7 +25,7 @@
     console.log(labeledObj.label);
   }
 
-  let myObj = { size: 10, label: 'Size 10 Object ' };
+  let myObj = { size: 10, label: "Size 10 Object " };
 
   printLabel(myObj);
 }
@@ -42,7 +42,7 @@ interface SquareConfig {
 }
 
 function createSquare(config: SquareConfig): { color: string; area: number } {
-  let newSquare = { color: 'white', area: 100 };
+  let newSquare = { color: "white", area: 100 };
 
   if (config.color) {
     newSquare.color = config.color;
@@ -54,4 +54,4 @@ function createSquare(config: SquareConfig): { color: string; area: number } {
   return newSquare;
 }
 
-console.log(createSquare({ color: 'black' }));
+console.log(createSquare({ color: "black" }));

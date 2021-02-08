@@ -27,11 +27,11 @@ let big: bigint = 100n;
  * String
  *
  */
-let color: string = 'blue';
-color = 'red';
+let color: string = "blue";
+color = "red";
 // color = 33; -> Error
 
-let fullName: string = 'Bob Brown';
+let fullName: string = "Bob Brown";
 let age: number = 37;
 let sentence: string = `Hello, I'm ${fullName}
 
@@ -57,7 +57,7 @@ let list2: Array<number> = [1, 2, 3];
 let x: [string, number];
 
 // Initialize it
-x = ['Hello', 10];
+x = ["Hello", 10];
 
 // Initialize it incorrectly
 // x = [10, 'hello']; // ❌ Error
@@ -119,7 +119,7 @@ console.log(Color4[10]); // -> Red
  */
 let notSure: unknown = 4;
 
-notSure = 'Maybe string...';
+notSure = "Maybe string...";
 
 notSure = false;
 
@@ -136,7 +136,7 @@ if (maybe === true) {
   // const aString: string = maybe; // ❌ Error;
 }
 
-if (maybe === 'string') {
+if (maybe === "string") {
   // TypeScript knows that maybe is a string
   const aString: string = maybe;
 
@@ -152,7 +152,7 @@ if (maybe === 'string') {
 declare function getValue(key: string): any;
 
 // OK, return value of 'getValue' is not checked
-const str: string = getValue('myString');
+const str: string = getValue("myString");
 
 let looselyTyped: any = 4;
 
@@ -174,7 +174,7 @@ let d = looselyTyped2.a.b.c.d;
  *
  */
 function warnUser(): void {
-  console.log('This is my warning message');
+  console.log("This is my warning message");
 }
 
 let unusable: void = undefined;
@@ -206,7 +206,7 @@ function error(message: string): never {
 
 // Inferred type is never
 function fail() {
-  return error('Something failed');
+  return error("Something failed");
 }
 
 // Function returning never must not have a reachable end point
@@ -226,7 +226,7 @@ create({ prop: 0 });
 create(null);
 
 // Errors:
-create(undefined);   // ❌ Error if `strictNullChecks` is set to `true`
+create(undefined); // ❌ Error if `strictNullChecks` is set to `true`
 // create(42);       // ❌ Error
 // create("string"); // ❌ Error
 // create(false);    // ❌ Error
@@ -240,12 +240,12 @@ create(undefined);   // ❌ Error if `strictNullChecks` is set to `true`
 // Type assertions have two forms
 
 // as-syntax
-let someValue: unknown = 'this is a string';
+let someValue: unknown = "this is a string";
 
 let strLength: number = (someValue as string).length;
 
 // "angle-bracket" syntax
-let someValue2: unknown = 'this is a string';
+let someValue2: unknown = "this is a string";
 
 let strLength2: number = (<string>someValue2).length;
 
@@ -266,12 +266,12 @@ let strLength2: number = (<string>someValue2).length;
 
 // Don't do this
 function reverse(s: String): String {
-  return s.split('').reverse().join('');
+  return s.split("").reverse().join("");
 }
-reverse('hello world');
+reverse("hello world");
 
 // Instead, use the types number, string, boolean, object and symbol.
 function reverse2(s: string): string {
-  return s.split('').reverse().join('');
+  return s.split("").reverse().join("");
 }
-reverse2('hello world');
+reverse2("hello world");
