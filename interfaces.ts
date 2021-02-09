@@ -1,9 +1,6 @@
-/**
- *
- * First interface
- *
- */
-
+///////////////////////////////////////////////////////
+// FIRST INTERFACE
+///////////////////////////////////////////////////////
 {
   // Simple example
   function printLabel(labeledObj: { label: string }) {
@@ -30,12 +27,9 @@
   printLabel(myObj);
 }
 
-/**
- *
- * Optional properties
- *
- */
-
+///////////////////////////////////////////////////////
+// OPTIONAL PROPERTIES
+///////////////////////////////////////////////////////
 interface SquareConfig {
   color?: string;
   width?: number;
@@ -56,11 +50,9 @@ function createSquare(config: SquareConfig): { color: string; area: number } {
 
 console.log(createSquare({ color: "black" }));
 
-/**
- *
- * Readonly properties
- *
- */
+///////////////////////////////////////////////////////
+// READ-ONLY PROPERTIES
+///////////////////////////////////////////////////////
 
 // Objects
 interface Point {
@@ -75,7 +67,6 @@ let p1: Point = { x: 10, y: 20 };
 let a: number[] = [1, 2, 3, 4];
 let ro: ReadonlyArray<number> = a;
 
-
 // ro[0] = 12;      // ❌ Error
 // ro.push(5);      // ❌ Error
 // ro.length = 100; // ❌ Error
@@ -87,10 +78,130 @@ let ro: ReadonlyArray<number> = a;
 // However we can overwrite it with type assertion
 a = ro as number[];
 
-/**
- * Readonly vs const.
- * 
- * `const` for variables
- * 
- * `readonly` for properties 
- */
+// READ-ONLY vs. CONST
+///////////////////////////////////////////////////////
+// `const` for variables
+// `readonly` for properties
+
+///////////////////////////////////////////////////////
+// EXCESS PROPERTY CHECKS
+///////////////////////////////////////////////////////
+
+// let mySquare = createSquare({ colour: "red", width: 100 }); // ❌ Error
+
+// Getting around excessive property checks using Type Assertion:
+let mySquare = createSquare({ width: 100, opacity: 0.5 } as SquareConfig);
+
+// Better approach
+interface SquareConfig2 {
+  color?: string;
+  width?: number;
+  [propName: string]: any;
+}
+
+function createSquare2(config: SquareConfig2): { color: string; area: number } {
+  return {
+    color: config.color || "red",
+    area: config.width ? config.width * config.width : 20,
+  };
+}
+
+let squareOptions = { colour: "red" };
+let mySquare2 = createSquare2(squareOptions);
+
+///////////////////////////////////////////////////////
+// FUNCTION TYPES
+///////////////////////////////////////////////////////
+interface SearchFunc {
+  (source: string, subString: string): boolean;
+}
+
+{
+  let mySearch: SearchFunc;
+
+  mySearch = function (source: string, subString: string) {
+    let result = source.search(subString);
+    return result > -1;
+  };
+}
+
+{
+  let mySearch: SearchFunc;
+
+  mySearch = function (src, sub) {
+    let result = src.search(sub);
+    return result > -1;
+  };
+}
+
+///////////////////////////////////////////////////////
+// INDEXABLE TYPES
+///////////////////////////////////////////////////////
+
+interface NumberDictionary {
+  [index: string]: number;
+  length: number;
+  // name: string; // ❌ Error
+}
+
+interface NumberOrStringDictionary {
+  [index: string]: number | string;
+  length: number;
+  name: string;
+}
+
+// Readonly
+interface ReadonlyStringArray {
+  readonly [index: number]: string;
+}
+
+let myArray: ReadonlyStringArray = ["Alice", "Bob"];
+
+// myArray[2] = "John"; // ❌ Error
+
+///////////////////////////////////////////////////////
+// CLASS TYPES
+///////////////////////////////////////////////////////
+
+// Difference between the static and instance sides of classes
+interface ClockConstructor {
+  new (hour: number, minute: number): ClockInterface;
+}
+
+interface ClockInterface {
+  tick(): void;
+}
+
+function createClock(
+  ctor: ClockConstructor,
+  hour: number,
+  minute: number
+): ClockInterface {
+  return new ctor(hour, minute);
+}
+
+class DigitalClock implements ClockInterface {
+  constructor(h: number, m: number) {}
+  tick() {
+    console.log("beep beep");
+  }
+}
+
+class AnalogClock implements ClockInterface {
+  constructor(h: number, m: number) {}
+  tick() {
+    console.log("tick tock");
+  }
+}
+
+let digital = createClock(DigitalClock, 12, 17);
+let analog = createClock(AnalogClock, 7, 32);
+
+// Another approach with class expression
+const DigitalClockTwo: ClockConstructor = class Clock
+  implements ClockInterface {
+  constructor(h: number, m: number) {}
+  tick() {
+    console.log("beep beep");
+  }
+};
