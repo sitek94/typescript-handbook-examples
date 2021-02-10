@@ -258,3 +258,28 @@ newSquare.penWidth = 5.0;
   c.reset();
   c.interval = 5.0;
 }
+
+///////////////////////////////////////////////////////
+// INTERFACES EXTENDING CLASSES
+///////////////////////////////////////////////////////
+
+class Control {
+  private state: any;
+}
+
+interface SelectableControl extends Control {
+  select(): void;
+}
+
+class Button extends Control implements SelectableControl {
+  select() {}
+}
+
+class TextBox extends Control {
+  select() {};
+}
+
+// class ImageControl implements SelectableControl { // ❌ Error
+//   private state: any;
+//   select() {};
+// }
