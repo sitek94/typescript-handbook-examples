@@ -15,11 +15,23 @@ let anonymFunc = function () {
 ///////////////////////////////////////////////////////
 // TYPING THE FUNCION
 ///////////////////////////////////////////////////////
+{
+  function add(x: number, y: number): number {
+    return x + y;
+  }
 
-function add(x: number, y: number): number {
-  return x + y;
+  let myAdd = function (x: number, y: number): number {
+    return x + y;
+  };
 }
-
-let myAdd = function (x: number, y: number): number {
-  return x + y;
-};
+///////////////////////////////////////////////////////
+// WRITING THE FUNCTION TYPE
+///////////////////////////////////////////////////////
+{
+  let myAdd: (x: number, y: number) => number = function (
+    x: number,
+    y: number
+  ): number {
+    return x + y;
+  };
+}
