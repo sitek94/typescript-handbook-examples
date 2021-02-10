@@ -12,3 +12,14 @@ let anonymFunc = function () {
   console.log(`I'm anonymous function`);
 };
 
+///////////////////////////////////////////////////////
+// TYPING THE FUNCION
+///////////////////////////////////////////////////////
+
+function add(x: number, y: number): number {
+  return x + y;
+}
+
+let myAdd = function (x: number, y: number): number {
+  return x + y;
+};
