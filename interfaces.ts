@@ -205,3 +205,31 @@ const DigitalClockTwo: ClockConstructor = class Clock
     console.log("beep beep");
   }
 };
+
+///////////////////////////////////////////////////////
+// EXTENDING INTERFACES
+///////////////////////////////////////////////////////
+interface Shape {
+  color: string;
+}
+
+interface Square extends Shape {
+  sideLength: number;
+}
+
+let square = {} as Square;
+square.color = "blue";
+square.sideLength = 10;
+
+// An interface can extend multiple interfaces, creating a combination of all of the interfaces.
+
+interface PenStroke {
+  penWidth: number;
+}
+
+interface NewSquare extends Square, Shape, PenStroke {}
+
+let newSquare = {} as NewSquare;
+newSquare.color = "blue";
+newSquare.sideLength = 10;
+newSquare.penWidth = 5.0;
